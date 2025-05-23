@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Figuras artesanales de tus personajes favoritos. Comics del Río crea figuras únicas hechas a mano con resina." />
+    <meta name="keywords" content="figuras, funko, artesanías, resina, comics, anime, personajes, coleccionables, hechos a mano, esculturas personalizadas, regalos" />
+    <meta name="author" content="Comics del Río" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>Comics del Río - Figuras y Coleccionables Artesanales</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+        /* Reset básico */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: url('fondo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #4d2c1b;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header, section, form, footer {
+            background-color: rgba(244, 235, 230, 0.85);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            max-width: 900px;
+            margin: 1.5rem auto; /* Aumento el margen superior e inferior */
+            padding: 1.5rem 2rem;
+            text-align: center; /* Centrar contenido por defecto */
+        }
+
+        header {
+            background-color: rgba(140, 91, 76, 0.9);
+            color: white;
+            padding-bottom: 1rem;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+        }
+
+        header img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+            display: block;
+        }
+
+        header h1 {
+            margin: 0.8rem 0 0.3rem 0;
+            font-size: 2.5rem; /* Ajuste para mejor visibilidad */
+        }
+
+        header p {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+
+        /* Menú principal */
+        nav.menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            background-color: rgba(217, 184, 167, 0.9);
+            padding: 1rem 0;
+            flex-wrap: wrap;
+            border-radius: 0 0 10px 10px;
+            max-width: 900px;
+            margin: 0 auto 2rem auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15); /* Añadir sombra para que combine */
+        }
+
+        nav.menu button {
+            background-color: #8c5b4c;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.6rem;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Añadir transform para hover */
+            position: relative;
+        }
+
+        nav.menu button:hover,
+        nav.menu button.active {
+            background-color: #704639;
+            transform: translateY(-2px); /* Pequeño efecto al hacer hover/active */
+        }
+
+        /* Submenús */
+        .submenu {
+            display: none;
+            background: #fff6f1;
+            border: 1px solid #d9b8a7;
+            border-radius: 8px;
+            padding: 1.5rem; /* Un poco más de padding */
+            margin-top: 1.5rem; /* Ajuste de margen superior */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left; /* Alinear el texto a la izquierda en submenú */
+        }
+
+        .submenu.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        /* Secciones */
+        section {
+            display: none;
+            text-align: left; /* Alinear el texto a la izquierda por defecto en secciones */
+        }
+        section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h2 {
+            color: #8c5b4c;
+            border-bottom: 2px solid #d9b8a7;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem; /* Aumento margen inferior */
+            text-align: center;
+            font-size: 2rem; /* Ajuste de tamaño de fuente */
+        }
+
+        .info-imagen {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 1.5rem; /* Ajuste de margen inferior */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Lista productos principal */
+        .producto-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste de min-width para productos */
+            gap: 2rem; /* Aumento de gap */
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .producto-item {
+            background: #fff6f1;
+            border: 1px solid #d9b8a7;
+            border-radius: 8px;
+            padding: 1.2rem; /* Un poco más de padding */
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .producto-item:hover {
+            transform: translateY(-5px); /* Efecto al hacer hover */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2); /* Sombra más pronunciada */
+        }
+
+        .producto-item img {
+            max-width: 150px; /* Aumento del tamaño máximo de la imagen */
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            object-fit: cover; /* Asegurar que la imagen se ajuste bien */
+            height: 150px; /* Altura fija para consistencia */
+        }
+
+        .producto-item h3 {
+            margin: 0.5rem 0 0.3rem 0;
+            color: #8c5b4c;
+            font-size: 1.2rem; /* Ajuste de tamaño de fuente */
+        }
+
+        .producto-item p {
+            font-size: 0.95rem;
+            color: #6a412f;
+            margin: 0;
+        }
+
+        /* Formulario */
+        form {
+            background-color: #fff6f1;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid #d9b8a7;
+            max-width: 500px;
+            margin: 2rem auto; /* Ajuste de márgenes */
+            text-align: left; /* Alinear el texto a la izquierda en el formulario */
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 0.6rem; /* Aumento margen inferior */
+            font-weight: 600;
+            color: #4d2c1b;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 0.8rem; /* Un poco más de padding */
+            margin-bottom: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease; /* Transición para focus */
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            outline: none;
+            border-color: #8c5b4c; /* Color al enfocar */
+        }
+
+        form button {
+            background-color: #8c5b4c;
+            color: white;
+            padding: 0.75rem 2.5rem; /* Aumento de padding */
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem; /* Aumento de tamaño de fuente */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: block; /* Para que el botón ocupe su propia línea */
+            margin: 0 auto; /* Centrar el botón */
+        }
+
+        form button:hover {
+            background-color: #704639;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem; /* Un poco más de padding */
+            background-color: rgba(217, 184, 167, 0.9);
+            color: #4d2c1b;
+            margin-top: 2rem;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15); /* Añadir sombra para que combine */
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #8c5b4c;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #704639;
+            text-decoration: underline;
+        }
+
+        /* Animación */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header, section, form, footer, nav.menu {
+                margin: 1rem auto;
+                padding: 1rem 1.5rem;
+            }
+
+            nav.menu {
+                flex-direction: column;
+                gap: 10px;
+                padding: 1rem;
+            }
+
+            nav.menu button {
+                width: 100%;
+                padding: 0.7rem 1rem;
+            }
+
+            .producto-lista {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .producto-item img {
+                max-width: 120px;
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            header p {
+                font-size: 1rem;
+            }
+            nav.menu button {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
+            .producto-lista {
+                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="imagen1.jpg" alt="Banner Comics del Río - Figuras de resina personalizadas" loading="lazy" />
+        <h1>Comics del Río</h1>
+        <p>Figuras de resina inspiradas en tus personajes favoritos</p>
+    </header>
+
+    <nav class="menu" aria-label="Menú principal de navegación">
+        <button class="active" data-section="quienes" aria-controls="quienes" aria-expanded="true">Quiénes somos</button>
+        <button data-section="quehacemos" aria-controls="quehacemos" aria-expanded="false">Qué hacemos</button>
+        <button data-section="productos" aria-controls="productos" aria-expanded="false">Productos y Servicios</button>
+        <button data-section="pedido" aria-controls="pedido" aria-expanded="false">Realizar Pedido</button>
+    </nav>
+
+    <section id="quienes" class="active" aria-labelledby="quienes-titulo">
+        <h2 id="quienes-titulo">Quiénes somos</h2>
+        <img src="local.png" alt="Equipo de Comics del Río trabajando en el taller de figuras artesanales" class="info-imagen" loading="lazy" />
+        <p>Somos un grupo de artistas apasionados por la cultura geek y el arte artesanal. Nuestro compromiso es traer a la vida tus personajes favoritos mediante esculturas de alta calidad, hechas a mano con dedicación y detalle.</p>
+        <p>Trabajamos con materiales de primera para garantizar la durabilidad y belleza de cada figura. Valoramos la creatividad y el amor por lo que hacemos, porque sabemos que cada pieza es especial para ti.</p>
+    </section>
+
+    <section id="quehacemos" aria-labelledby="quehacemos-titulo">
+        <h2 id="quehacemos-titulo">Qué hacemos</h2>
+        <img src="taller.jpg" alt="Proceso de fabricación artesanal de figuras de resina en el taller de Comics del Río" class="info-imagen" loading="lazy" />
+        <p>Diseñamos y elaboramos figuras coleccionables a mano, utilizando resina y otros materiales de alta calidad. Cada figura pasa por un proceso de modelado, pintado y acabado para asegurar que cumpla con los estándares de nuestros clientes.</p>
+        <p>Además, ofrecemos figuras personalizadas para aquellos que buscan una pieza única, ideal para regalos, colecciones o decoración especial.</p>
+    </section>
+
+    <section id="productos" aria-labelledby="productos-titulo">
+        <h2 id="productos-titulo">Productos y Servicios</h2>
+        <div class="producto-lista" role="list">
+
+            <div class="producto-item" data-producto="stich" tabindex="0" role="button" aria-pressed="false" aria-describedby="stich-desc">
+                <img src="stich.jpg" alt="Figura de Stitch con ukelele, resina artesanal" loading="lazy" />
+                <h3>Stitch con ukelele</h3>
+                <p id="stich-desc">Tamaño: 13 cm<br>Precio: $70 pesos</p>
+            </div>
+
+            <div class="producto-item" data-producto="checo" tabindex="0" role="button" aria-pressed="false" aria-describedby="checo-desc">
+                <img src="checo.jpg" alt="Figura de Checo Perez, piloto de Fórmula 1, de resina" loading="lazy" />
+                <h3>Checo Perez</h3>
+                <p id="checo-desc">Tamaño: 13 cm<br>Precio: $70 pesos</p>
+            </div>
+
+            <div class="producto-item" data-producto="enfermero" tabindex="0" role="button" aria-pressed="false" aria-describedby="enfermero-desc">
+                <img src="enfermero.jpg" alt="Figura de enfermero con uniforme blanco y azul" loading="lazy" />
+                <h3>Enfermero</h3>
+                <p id="enfermero-desc">Tamaño: 13 cm<br>Precio: $70 pesos</p>
+            </div>
+
+            <div class="producto-item" data-producto="pinocho" tabindex="0" role="button" aria-pressed="false" aria-describedby="pinocho-desc">
+                <img src="pino.jpg" alt="Figura de Pinocho artesanal de resina" loading="lazy" />
+                <h3>Pinocho</h3>
+                <p id="pinocho-desc">Tamaño: 13 cm<br>Precio: $70 pesos</p>
+            </div>
+
+            <div class="producto-item" data-producto="garfield" tabindex="0" role="button" aria-pressed="false" aria-describedby="garfield-desc">
+                <img src="gar.jpg" alt="Figura del gato Garfield sentado, de resina" loading="lazy" />
+                <h3>Garfield</h3>
+                <p id="garfield-desc">Tamaño: 13 cm<br>Precio: $70 pesos</p>
+            </div>
+
+            <div class="producto-item" data-producto="harry" tabindex="0" role="button" aria-pressed="false" aria-describedby="harry-desc">
+                <img src="jarra.jpg" alt="Figura de Harry Potter con su varita, de resina" loading="lazy" />
+                <h3>Harry Potter</h3>
+                <p id="harry-desc">Tamaño: 13 cm<br>Precio: $70 pesos</p>
+            </div>
+
+            <div class="producto-item" data-producto="cristiano" tabindex="0" role="button" aria-pressed="false" aria-describedby="cristiano-desc">
+                <img src="cr7.jpg" alt="Figura de Cristiano Ronaldo celebrando un gol, de resina" loading="lazy" />
+                <h3>Cristiano Ronaldo</h3>
+                <p id="cristiano-desc">Tamaño: 13 cm<br>Precio: $70 pesos</p>
+            </div>
+
+            <div class="producto-item" data-producto="naruto" tabindex="0" role="button" aria-pressed="false" aria-describedby="naruto-desc">
+                <img src="naruto.jpg" alt="Figura de Naruto Uzumaki en pose de acción, de resina" loading="lazy" />
+                <h3>Naruto Uzumaki</h3>
+                <p id="naruto-desc">Tamaño: 13 cm<br>Precio: $70 pesos</p>
+            </div>
+
+        </div>
+
+        <div id="stich" class="submenu" aria-live="polite" aria-hidden="true" role="region" aria-label="Detalles del producto Stitch con ukelele">
+            <h3>Stitch con ukelele</h3>
+            <img src="stich.jpg" alt="Stitch con ukelele, figura de resina" class="info-imagen" />
+            <p>Figura hecha a mano de Stitch con su ukelele, tamaño de 13 cm, disponible en colores azul y morado.</p>
+            <p><strong>Tamaño:</strong> 13 cm</p>
+            <p><strong>Colores:</strong> Azul y Morado</p>
+            <p><strong>Precio:</strong> $70 pesos</p>
+        </div>
+
+        <div id="checo" class="submenu" aria-live="polite" aria-hidden="true" role="region" aria-label="Detalles del producto Checo Perez">
+            <h3>Checo Perez</h3>
+            <img src="checo.jpg" alt="Checo Perez, figura de resina" class="info-imagen" />
+            <p>Figura detallada de Checo Perez, tamaño 13 cm, con colores oficiales de su escudería.</p>
+            <p><strong>Tamaño:</strong> 13 cm</p>
+            <p><strong>Colores:</strong> Rojo, blanco y negro</p>
+            <p><strong>Precio:</strong> $70 pesos</p>
+        </div>
+
+        <div id="enfermero" class="submenu" aria-live="polite" aria-hidden="true" role="region" aria-label="Detalles del producto Enfermero">
+            <h3>Enfermero</h3>
+            <img src="enfermero.jpg" alt="Enfermero, figura de resina" class="info-imagen" />
+            <p>Figura representativa del enfermero, tamaño 13 cm, disponible en color blanco y azul.</p>
+            <p><strong>Tamaño:</strong> 13 cm</p>
+            <p><strong>Colores:</strong> Blanco y azul</p>
+            <p><strong>Precio:</strong> $70 pesos</p>
+        </div>
+
+        <div id="pinocho" class="submenu" aria-live="polite" aria-hidden="true" role="region" aria-label="Detalles del producto Pinocho">
+            <h3>Pinocho</h3>
+            <img src="pino.jpg" alt="Pinocho, figura de resina" class="info-imagen" />
+            <p>Figura de Pinocho artesanal, tamaño 13 cm, disponible en colores natural y marrón.</p>
+            <p><strong>Tamaño:</strong> 13 cm</p>
+            <p><strong>Colores:</strong> Natural y Marrón</p>
+            <p><strong>Precio:</strong> $70 pesos</p>
+        </div>
+
+        <div id="garfield" class="submenu" aria-live="polite" aria-hidden="true" role="region" aria-label="Detalles del producto Garfield">
+            <h3>Garfield</h3>
+            <img src="gar.jpg" alt="Garfield, figura de resina" class="info-imagen" />
+            <p>Figura de Garfield, tamaño 13 cm, en colores naranja clásico y negro para detalles.</p>
+            <p><strong>Tamaño:</strong> 13 cm</p>
+            <p><strong>Colores:</strong> Naranja y negro</p>
+            <p><strong>Precio:</strong> $70 pesos</p>
+        </div>
+
+        <div id="harry" class="submenu" aria-live="polite" aria-hidden="true" role="region" aria-label="Detalles del producto Harry Potter">
+            <h3>Harry Potter</h3>
+            <img src="jarra.jpg" alt="Harry Potter, figura de resina" class="info-imagen" />
+            <p>Figura de Harry Potter, tamaño 13 cm, con los colores oficiales de la casa Gryffindor.</p>
+            <p><strong>Tamaño:</strong> 13 cm</p>
+            <p><strong>Colores:</strong> Rojo y dorado</p>
+            <p><strong>Precio:</strong> $70 pesos</p>
+        </div>
+
+        <div id="cristiano" class="submenu" aria-live="polite" aria-hidden="true" role="region" aria-label="Detalles del producto Cristiano Ronaldo">
+            <h3>Cristiano Ronaldo</h3>
+            <img src="cr7.jpg" alt="Cristiano Ronaldo, figura de resina" class="info-imagen" />
+            <p>Figura de Cristiano Ronaldo, tamaño 13 cm, con los colores oficiales de su equipo.</p>
+            <p><strong>Tamaño:</strong> 13 cm</p>
+            <p><strong>Colores:</strong> Blanco, negro y verde</p>
+            <p><strong>Precio:</strong> $70 pesos</p>
+        </div>
+
+        <div id="naruto" class="submenu" aria-live="polite" aria-hidden="true" role="region" aria-label="Detalles del producto Naruto Uzumaki">
+            <h3>Naruto Uzumaki</h3>
+            <img src="naruto.jpg" alt="Naruto Uzumaki, figura de resina" class="info-imagen" />
+            <p>Figura de Naruto Uzumaki, tamaño 13 cm, con sus colores clásicos naranja y negro.</p>
+            <p><strong>Tamaño:</strong> 13 cm</p>
+            <p><strong>Colores:</strong> Naranja y negro</p>
+            <p><strong>Precio:</strong> $70 pesos</p>
+        </div>
+    </section>
+
+    <section id="pedido" aria-labelledby="pedido-titulo">
+        <h2 id="pedido-titulo">Realizar Pedido</h2>
+        <form action="https://formspree.io/f/mnndygnn" method="POST">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required />
+
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="_replyto" placeholder="ejemplo@dominio.com" required />
+
+            <label for="producto">Producto:</label>
+            <select id="producto" name="producto" required>
+                <option value="">Seleccione un producto</option>
+                <option value="Stitch con ukelele">Stitch con ukelele</option>
+                <option value="Checo Perez">Checo Perez</option>
+                <option value="Enfermero">Enfermero</option>
+                <option value="Pinocho">Pinocho</option>
+                <option value="Garfield">Garfield</option>
+                <option value="Harry Potter">Harry Potter</option>
+                <option value="Cristiano Ronaldo">Cristiano Ronaldo</option>
+                <option value="Naruto Uzumaki">Naruto Uzumaki</option>
+            </select>
+
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" name="cantidad" min="1" max="100" value="1" required aria-label="Cantidad de productos a pedir" />
+
+            <label for="direccion">Dirección de entrega:</label>
+            <textarea id="direccion" name="direccion" rows="3" placeholder="Calle, número, colonia, código postal, ciudad, estado" required></textarea>
+
+            <button type="submit">Enviar pedido</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2025 Comics del Río. Todos los derechos reservados.</p>
+        <p><a href="mailto:angeldelrio699@gmal.com">contacto@comicsdelrio.com</a></p>
+    </footer>
+
+    <script>
+        // Control para mostrar secciones principales
+        const menuButtons = document.querySelectorAll('nav.menu button');
+        const sections = document.querySelectorAll('section');
+
+        menuButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const sectionId = button.getAttribute('data-section');
+
+                // Actualizar atributos aria-expanded
+                menuButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+                button.classList.add('active');
+                button.setAttribute('aria-expanded', 'true');
+
+                // Mostrar sección correspondiente y ocultar submenús
+                sections.forEach(section => {
+                    if (section.id === sectionId) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+
+                // Ocultar todos los submenús cuando cambio de sección principal
+                document.querySelectorAll('.submenu').forEach(sm => {
+                    sm.classList.remove('active');
+                    sm.setAttribute('aria-hidden', 'true');
+                });
+            });
+        });
+
+        // Control para mostrar submenús al hacer click o enter en producto
+        const productoItems = document.querySelectorAll('.producto-item');
+        productoItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mostrarSubmenu(item.getAttribute('data-producto'), item);
+            });
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    mostrarSubmenu(item.getAttribute('data-producto'), item);
+                }
+            });
+        });
+
+        function mostrarSubmenu(id, clickedItem) {
+            // Ocultar todos los submenús y desmarcar aria-pressed
+            document.querySelectorAll('.submenu').forEach(sm => {
+                sm.classList.remove('active');
+                sm.setAttribute('aria-hidden', 'true');
+            });
+            document.querySelectorAll('.producto-item').forEach(item => {
+                item.setAttribute('aria-pressed', 'false');
+            });
+
+            // Mostrar solo el que corresponde
+            const submenu = document.getElementById(id);
+            if (submenu) {
+                submenu.classList.add('active');
+                submenu.setAttribute('aria-hidden', 'false');
+                if (clickedItem) {
+                    clickedItem.setAttribute('aria-pressed', 'true');
+                }
+
+                // Desplazar a la sección de productos para que se vea bien el submenú
+                // Asegurarse de que el scroll se aplique a la sección que contiene el submenú
+                const productosSection = document.getElementById('productos');
+                if (productosSection) {
+                    productosSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
